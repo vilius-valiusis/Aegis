@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" contend="text/html; charset=UTF-8">
+		<title>Managment Features</title>
+		<link rel="stylesheet" type="text/css" href="CSS/css.css"/>
+		
+	<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+
+<script src="scripts.js"></script>
+		</head>
+	<body onload="checkAuth('List Drivers')">
+		<div id="wrapper">
+			<div id="header">
+				<a id="login">login</a>
+			</div>	
+			<div id="banner">
+			</div>
+			
+			<nav id="navigation">
+				<ul id="nav">
+					<li><a href="welcomePage.html">Welcome page</a></li>
+					<li><a href="ManagmentFeatures.html">Managment options</a></li>
+					<li><a href="Hotspots.html">Hotspots</a></li>
+					<li><a href="FeaturesPage.html">Features</a></li>
+				</ul>
+			</nav>
+			
+			<div id="content">
+			<div id="innerContent">
+			<table>
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Employee ID</th>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Mobile</th>
+					<th>Vehicle Reg</th>
+				</tr>
+			</thead>
+			<tbody id="driverTable"></tbody>
+			</table>
+			</div>
+		</div>	
+			<footer>
+				<p>This is a student project</p>
+			</footer>
+		</div>
+
+	
+	</body>
+	
+</html>	

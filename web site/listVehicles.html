@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" contend="text/html; charset=UTF-8">
+		<title>Managment Features</title>
+		<link rel="stylesheet" type="text/css" href="CSS/css.css"/>
+	</head>
+	<body onload="listVechicle()">
+		<div id="wrapper">
+			<div id="header">
+				<a id="login"></a>
+			</div>	
+			<div id="banner">
+			</div>
+			
+			<nav id="navigation">
+				<ul id="nav">
+					<li><a href="welcomePage.html">Welcome page</a></li>
+					<li><a href="ManagmentFeatures.html">Managment options</a></li>
+					<li><a href="Hotspots.html">Hotspots</a></li>
+					<li><a href="FeaturesPage.html">Features</a></li>
+				</ul>
+			</nav>
+			
+			<div id="content">
+			<div id="innerContent">
+			<text>Enter the reg number of a vehicle to get more analytics and real time GPS</text>
+			<input type="text" id="search" placeholder="Car Reg">
+			<button id="regSearch" onclick="searchCarReg()">search</button>
+			<table>
+			<thead>
+				<tr>
+				<th>Colour</th>
+				<th>Make</th>
+				<th>Model</th>
+				<th>Vehicle Reg</th>
+				<th>GPS Location</th>
+				<th>Analytics</th>
+				</tr>
+			</thead>
+			<tbody id="VehicleTable"></tbody>
+			</table>
+			</div>
+		</div>	
+			<footer>
+				<p>This is a student project</p>
+			</footer>
+		</div>
+	<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+
+<script src="scripts.js"></script>
+
+	
+	</body>
+	
+</html>	

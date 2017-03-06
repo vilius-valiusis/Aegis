@@ -121,3 +121,10 @@ background-color: rgba(208, 62, 32, 0.9);
 	height:200px;
 	
 }
+#travelLog
+{
+	padding-left:30%;
+	width:40%;
+    height:50%;
+	overflow-y:scroll;
+}

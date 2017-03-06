@@ -13,6 +13,9 @@ var config = {
   };
 firebase.initializeApp(config);
 //inital setup of database  
+
+
+var currentVehicleRegAsString= localStorage.getItem('searchedVehicle') || null;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     document.getElementById("login").innerHTML="logout";
@@ -73,15 +76,6 @@ function runner(functToRun)
 }
 
 
-var currentCompanyRefAsString= localStorage.getItem('currentCompany')|| null;
-var currentVehicleRegAsString= localStorage.getItem('searchedVehicle') || null;
-var companyRef;
-var key;
-if(currentCompanyRefAsString != null)
-{
-	key = JSON.parse(currentCompanyRefAsString);
-	companyRef = firebase.database().ref('CORPORATE/'+key);
-}
 
 
 
@@ -129,31 +123,23 @@ function listVechicle(){
 var VehicleTable = document.getElementById("VehicleTable");
 var counter=0;
 //add row to table for every child in object, then populate row with reg num,make,colour,model
-var key = JSON.parse(currentCompanyRefAsString);
-
-var GPSlink = document.createElement("a");
-var AnalyticsLink = document.createElement("a");
-corporateRef.child(key).child('VEHICLES').on('child_added',function(snapshot,prev){
-	GPSlink.setAttribute("href","realTimeMap.html");
-	AnalyticsLink.setAttribute("href","analytics.html");
-	var GPSlinkText = document.createTextNode("GPS");
-	GPSlink.appendChild(GPSlinkText);
-	var anaLinkText = document.createTextNode("Analytics");
-	AnalyticsLink.appendChild(anaLinkText);
-	var row = VehicleTable.insertRow(counter);
-	var cell1 = row.insertCell(0);
-	var cell2 = row.insertCell(1);
-	var cell3 = row.insertCell(2);
-	var cell4 = row.insertCell(3);
-	var cell5 = row.insertCell(4);
-	var cell6 = row.insertCell(5);
-	cell1.innerHTML = snapshot.child("COLOUR").val();
-	cell2.innerHTML = snapshot.child("MAKE").val();
-	cell3.innerHTML = snapshot.child("MODEL").val();
-	cell4.innerHTML = snapshot.child("VEH_REG").val();
-	cell5.appendChild(GPSlink);
-	cell6.appendChild(AnalyticsLink);
-	counter++;	
+console.log("I hate you");
+var user = firebase.auth().currentUser;
+firebase.database().ref('CORPORATE/'+user.uid+'/V_KEYS').on('child_added',function(vKey,prevVkey){
+	console.log("hi");
+	firebase.database().ref('CORPORATE/'+user.uid+'/VEHICLES/'+ vKey.key).once('value',function(snapshot){
+		console.log(vKey.key);
+		var row = VehicleTable.insertRow(counter);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		var cell3 = row.insertCell(2);
+		var cell4 = row.insertCell(3);
+		cell1.innerHTML = snapshot.val().COLOUR;
+		cell2.innerHTML = snapshot.val().MAKE;
+		cell3.innerHTML = snapshot.val().MODEL;
+		cell4.innerHTML = snapshot.val().VEH_REG;
+		counter++;	
+	});
 });
 //code for adding vehicle from database ends here
 }
@@ -166,33 +152,27 @@ var counter=0;//make counter for insertRow perposes
 //companyRef
 var user = firebase.auth().currentUser;
 
-console.log(user.uid);
-console.log(key);
 
-if(user.uid === key)
-{console.log("hi");}
-
-firebase.database().ref('CORPORATE/'+user.uid+'/D_KEYS').once('value')
-.then(function(driverKey){
-//corporateRef.child(key).child('VEHICLES').on('child_added',function(snapshot,prev){
-	console.log("hi1");
-	//firebase.database().ref('CORPORATE/'+user.uid+'/DRIVERS'+driverKey.getKey).on('value',function(snapshot){
-		window.alert("Hate");
-		var row = DriversTable.insertRow(counter);
-		var cell1 = row.insertCell(0);
-		var cell2 = row.insertCell(1);
-		var cell3 = row.insertCell(2);
-		var cell4 = row.insertCell(3);
-		var cell5 = row.insertCell(4);
-		var cell6 = row.insertCell(5);
-		cell1.innerHTML = snapshot.child("EMAIL").val();
-		cell2.innerHTML = snapshot.child("EMP_ID").val();
-		cell3.innerHTML = snapshot.child("FIRSTNAME").val();
-		cell4.innerHTML = snapshot.child("LASTNAME").val();
-		cell5.innerHTML = snapshot.child("MOBILE").val();
-		cell6.innerHTML = snapshot.child("VEH_REG").val();
-		counter++;	
-	//});
+firebase.database().ref('CORPORATE/'+user.uid+'/D_KEYS').on('child_added',function(driverKey,prevDKey){
+	
+	firebase.database().ref('CORPORATE/'+user.uid+'/DRIVERS/'+driverKey.key).once('value',function(snapshot){
+	
+			var row = DriversTable.insertRow(counter);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			var cell6 = row.insertCell(5);
+			cell1.innerHTML = snapshot.val().EMAIL;
+			cell2.innerHTML = snapshot.val().EMP_ID;
+			cell3.innerHTML = snapshot.val().FIRSTNAME;
+			cell4.innerHTML = snapshot.val().LASTNAME;
+			cell5.innerHTML = snapshot.val().MOBILE;
+			cell6.innerHTML = snapshot.val().VEH_REG;
+			counter++;	
+		
+	});
 });
 //add drivers to table code ends
 }
@@ -370,12 +350,12 @@ function clearObjects()
 function searchCarReg()
 {
 	var reg = document.getElementById("search");
-
-	var key = JSON.parse(currentCompanyRefAsString);
-	corporateRef.child(key).child('VEHICLES').on('child_added',function(snapshot,prev){
-		if (snapshot.child("VEH_REG").val() == reg.value)
+var user = firebase.auth().currentUser;
+	firebase.database().ref('CORPORATE/'+user.uid+'/V_KEYS').on('child_added',function(vKey,prev){
+		if (vKey.key == reg.value)
 		{
-			localStorage.setItem('searchedVehicle',JSON.stringify(snapshot.getKey()));
+			console.log(vKey.key)
+			localStorage.setItem('searchedVehicle',JSON.stringify(vKey.key));
 			 window.location.href = "options.html";
 		}
 	});
@@ -385,31 +365,34 @@ function searchCarReg()
 
 function readAnalytics()
 {
-	var key = JSON.parse(currentCompanyRefAsString);
 	var Veh_Reg = JSON.parse(currentVehicleRegAsString);
 	var travelLog = document.getElementById("travelLog");
 	var counter=0;
 	var JourneyNum=1;
 	
-	corporateRef.child(key).child('VEHICLES').child(Veh_Reg).child('LOG').on('child_added',function(snapshot,prev){
+var user = firebase.auth().currentUser;
+
+firebase.database().ref('CORPORATE/' +user.uid+'/VEHICLES/'+Veh_Reg+'/LOG').on('child_added',function(snapshot){
+
 		var latln = {lat: parseFloat(snapshot.child('LAT').val()) , lng: parseFloat(snapshot.child('LONG').val())}
 		var geocoder = new google.maps.Geocoder;
 		var string="";
 		if((counter%2) == 0)
 		{
-			
-			string+="<h3>Journey " + JourneyNum + "</h3>";
-			string+="<BR>Starting date:";
-			string+=snapshot.child('DATE').val();
 			geocoder.geocode({'location':latln},function(results, status){
 				
 				if (status === 'OK')
 				{
-					travelLog.innerHTML+="<BR>Starting location:";
+				
 					string+=results[1].formatted_address;
 				}
 				
 			});
+			string+="<h3>Journey " + JourneyNum + "</h3>";
+			string+="<BR>Starting date:";
+			string+=snapshot.child('DATE').val();
+			string+="<BR>Starting location:";
+			
 			
 			string+="<BR>Starting time:";
 			string+=snapshot.child('TIME').val();

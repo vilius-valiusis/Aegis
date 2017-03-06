@@ -5,7 +5,7 @@
 		<title>Managment Features</title>
 		<link rel="stylesheet" type="text/css" href="CSS/css.css"/>
 	</head>
-	<body onload="listVechicle()">
+	<body onload="checkAuth('List Vehicles')">
 		<div id="wrapper">
 			<div id="header">
 				<a id="login"></a>
@@ -34,8 +34,6 @@
 				<th>Make</th>
 				<th>Model</th>
 				<th>Vehicle Reg</th>
-				<th>GPS Location</th>
-				<th>Analytics</th>
 				</tr>
 			</thead>
 			<tbody id="VehicleTable"></tbody>

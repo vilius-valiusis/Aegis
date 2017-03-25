@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" contend="text/html; charset=UTF-8">
+		<title>Add driver</title>
+		<link rel="stylesheet" type="text/css" href="CSS/css.css"/>
+				<link rel="shortcut icon" type="Images/x-icon" href="favicon.ico" />
+
+	</head>
+	<body onLoad="checkAuth('add Driver')">
+		<div id="wrapper">
+			<div id="header">
+				<a href="login.html" id="login">login</a>
+				<a id="logout" onClick="logout()">logout</a>
+			</div>	
+			<div id="banner">
+			</div>
+			
+			<nav id="navigation">
+				<div id="nav">
+					<input type="button" value="Welcome page" onclick="window.location.href='index.html'" id="navButton">
+					<input type="button" value="Managment Features" onclick="window.location.href='ManagmentFeatures.html'" id="navButton">
+					<input type="button" value="Hotspots" onclick="window.location.href='Hotspots.html'" id="navButton">
+					<input type="button" value="Features Page" onclick="window.location.href='FeaturesPage.html'" id="navButton">
+				</div>
+			</nav>
+			
+			<div id="content">
+			<div id="innerContent">
+			
+			<div id="form">
+			<text>Driver's email:</text>
+			<br>
+			<input type="text" id="driverEmail">
+			<br>
+			<text>First name:</text>
+			<br>
+			<input type="text" id="firstName">
+			<br>
+			<text>Last name:</text>
+			<br>
+			<input type="text" id="lastName">
+			<br>
+			
+			
+			<text>Employee ID:</text>
+			<br>
+			<input type="text" id="employeeID">
+			<br>
+			<br>
+			<text>Mobile number:</text>
+			<br>
+			<input type="text" id="mobile">
+			<br>
+			<text>Driver account password</text>
+			<br>
+			<input type="password" id="password">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<text>Assigned Vehicle:</text>
+			<br>
+			<select id="vehicleDropDown"></select>
+			<br>
+		</div>	
+		<button id="addDriverbutten" onclick="validateAdd()">submit</button>
+	
+		</div>	
+		</div>	
+			<footer>
+				<p>This is a student project</p>
+			</footer>
+		</div>
+		<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+
+<script src="scripts.js"></script>
+
+	
+	</body>
+	
+</html>	

@@ -1,0 +1,169 @@
+
+#map 
+{
+    height: 100%;
+}
+
+
+
+     
+html, body 
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+		font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
+	background:-webkit-gradient(linear, 80% 20%, 10% 21%, from(#0000FF), to(#000085));
+	color: rgba(236, 210, 0, 1);
+	
+}
+
+#login ,#logout
+{
+	margin-right:10px;
+	float:right;
+	color:rgba(0, 44, 195, 1);
+}
+#header
+{
+	border:solid 2px #000000;
+	background-color:rgba(248, 159, 0, 1);
+	overflow:hidden;
+}
+#navigation
+{
+	
+	border:solid 2px #000000;
+	background-color:rgba(248, 159, 0, 1);
+
+}
+
+
+#innerContent
+{
+	padding:20px 20px 20px 20px;
+	text-align:center;
+}
+#map
+{
+	height:100%;
+}
+
+#contentButton ,#regSearch,#addDriverbutten,#removeDriverbutten ,#loginButton
+{
+	border:solid 1px #000000;
+	border-radius: 15px;
+	background-color:rgba(0, 159, 200, 0.4);
+	color: rgba(236, 210, 0, 1);
+    width: 25%;
+	padding:50px;
+    text-decoration: none;
+	margin:5px;
+    font-size: 25px;
+}
+#regSearch,#addDriverbutten,#removeDriverbutten ,#loginButton
+{
+	padding:0px;
+	margin:0px;
+	width:10%;
+	font-size:15px;
+}
+#contentButton:hover,#regSearch:hover,#addDriverbutten:hover,#removeDriverbutten:hover ,#loginButton:hover
+{
+    background-color: rgba(200, 140, 0, 1);
+	color: rgba(0, 204, 253, 1);
+}
+#navButton
+{
+	background-color:rgba(248, 159, 0, 1);
+    border: none;
+	color: rgba(0, 69, 96, 0.8);
+    width: 24.7%;
+	padding-top:10px;
+	padding-bottom:10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+}
+#navButton:hover 
+{
+    background-color: rgba(200, 140, 0, 1);
+	color: rgba(0, 204, 253, 1);
+}
+table {
+   border: 3px solid black;
+   
+   background-color: rgba(255, 255, 255, 0.9);
+   color:rgba(0,0,0,1);
+   width:70%; 
+    margin-left:15%; 
+    margin-right:15%;
+}
+#password , #emailAddress ,#DriverToRemove
+{
+	width:25%;
+	padding:5px;
+	margin: 8px 0;
+	box-sizing:border-box;
+}
+input[type=text] ,input[type=password] 
+{
+	width: 50%;
+    padding:5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+#form
+{
+	 column-count: 2;
+	 text-align:left;
+}
+#form1
+{
+	 column-count: 2;
+	 text-align:center;
+}
+#travelLog
+{
+	text-align:left;
+}
+td{
+	background-color: rgba(194, 196, 198, 0.9);
+
+}
+
+#centeredText
+{
+	text-align:ceter;
+}
+#content
+{
+ padding-top:20px;
+border:solid 2px #000000;
+ height:50%;
+ overflow:hidden;
+ text-align:left;
+	font-size:20px;
+
+}
+
+#banner 
+{
+	background-color:rgba(255,255,255,1);
+	background-image:url(../Images/shield.png);
+	background-repeat: no-repeat;
+
+	height:200px;
+	width:500;
+	background-size: 100% 100%;
+	
+	
+}
+#travelLog
+{
+	padding-left:30%;
+	width:40%;
+    height:50%;
+	overflow-y:scroll;
+}

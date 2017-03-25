@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		 <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+	<title>GPS</title>
+		
+	<link rel="stylesheet" type="text/css" href="CSS/css.css"/>
+			<link rel="shortcut icon" type="Images/x-icon" href="favicon.ico" />
+
+	</head>
+	<body onLoad="checkAuth('GPS')">
+		<div id="wrapper" style="height:100%;">
+			<div id="header">
+				<a href="login.html" id="login">login</a>
+				<a id="logout" onClick="logout()">logout</a>
+			</div>	
+			<div id="banner">
+			</div>
+			
+			<nav id="navigation">
+				<div id="nav">
+					<input type="button" value="Welcome page" onclick="window.location.href='index.html'" id="navButton">
+					<input type="button" value="Managment Features" onclick="window.location.href='ManagmentFeatures.html'" id="navButton">
+					<input type="button" value="Hotspots" onclick="window.location.href='Hotspots.html'" id="navButton">
+					<input type="button" value="Features Page" onclick="window.location.href='FeaturesPage.html'" id="navButton">
+				</div>
+			</nav>
+				
+			<div id="content" style="height:100%;">
+			<div id="innerContent" style="height:100%;">
+			<div id="map"></div>
+			</div>
+			</div>	
+			<footer>
+				<p>This is a student project</p>
+			</footer>
+		</div>
+		
+		<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+
+<script src="scripts.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCH6ZU9ioqOgY6eHQGSud8tjv9B7bHJyWE&callback=initRealTimeMap"
+    async defer></script>
+	
+	</body>
+	
+</html>	
